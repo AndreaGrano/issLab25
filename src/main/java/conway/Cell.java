@@ -11,7 +11,10 @@ public class Cell {
 		return state;
 	}
 
-	public void setState(int state) {
-		this.state = state;
+	public void switchState() {
+		if(state == 0)
+			state = 1;
+		else
+			state = 0;
 	}
 }

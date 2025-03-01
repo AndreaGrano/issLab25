@@ -16,17 +16,14 @@ public class Grid {
 				this.grid[i][j] = new Cell();
 			}
 		}
-		
-
-		this.reset();
 	}
 	
 	public int getCellState(int x, int y) {
 		return this.grid[x][y].getState();
 	}
 	
-	public void setCellState(int x, int y, int state) {
-		this.grid[x][y].setState(state);
+	public void switchCellState(int x, int y) {
+		this.grid[x][y].switchState();
 	}
 	
 	public void reset() {
@@ -34,7 +31,7 @@ public class Grid {
 		
 		for(i = 0; i < x; i++) {
 			for(j = 0; j < y; j++) {
-				this.grid[i][j].setState(0);
+				grid[i][j] = new Cell();
 			}
 		}
 	}
