@@ -267,6 +267,23 @@ div.imagedesc{
 		Durante lo svolgimento della partita deve essere possibile interromperla e/o resettare lo stato della griglia e/o uscire dal gioco. 
 	</p>
 
+<h2>Preliminary questions</h2>
+	<p>
+		<ul>
+			<li>Model: classi Java come Grid e Cell</li>
+			<li>View: pagina HTML. Pur essendo View, dovr&agrave; operare anche da dispositivo di input (ConwayInputMock verr&agrave; eliminato), attraverso i pulsanti start, stop, exit</li>
+			<li>Controller: LifeController, ma viene gestito da ConwayInputMock, non &egrave; autonomo.</li>
+		</ul> 
+	</p>
+	<p>
+		Come modificare LifeController? Adesso esegue solo cinque iterazioni a scopo di test. Si implementer&agrave; un ciclo infinito, in cui serviranno più variabili che identifichino le possibilit&agrave; di configurazioni stabili o vuote.
+		Il mediatore in realt&agrave; sar&agrave; SpringBoot, non quello scritto nel codice; infatti, gestir&agrave; le interazioni da e verso l'esterno.
+	</p>
+	<p>
+		L'interazione asincrona client-server la si implementer&agrave; con WebSocket o AJAX?<br>
+		Usando AJAX &egrave; possibile passare comodamente da human-machine interaction a machine-to-machine interaction? Permettere quest'ultimo tipo di interazione potrebbe portare anche all'automazione del testing.
+	</p>
+
 <h2>Problem analysis</h2>
 	<p>
 		La presenza concorrente di pi&ugrave; utenti impone di trovare un criterio per determinare chi abbia il controllo, al fine di evitare collisioni tra interazioni diverse (e.g. utenti diversi che provassero a modificare contemporaneamente lo stato iniziale di una cella).
@@ -290,7 +307,9 @@ div.imagedesc{
 	</p>
 
 <h2>Project</h2> 
- 
+ <p>
+
+ </p>
  
 
 <h2>Testing</h2> 
