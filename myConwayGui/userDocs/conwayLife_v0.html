@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"crossorigin="anonymous"></script> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="./commons/resources/styles/templateISS.css">
+        <link rel="stylesheet" type="text/css" href="./commons/resources/styles/main.css">
+        <link rel="stylesheet" type="text/css" href="./commons/resources/styles/navbar.css">
+        <link rel="stylesheet" type="text/css" href="./commons/resources/styles/table.css">
+        <link rel="stylesheet" type="text/css" href="./commons/resources/styles/code.css">
+        <!-- <script type="text/javascript" src="./commons/resources/scripts/myScripts.js"></script> -->
+<style type="text/css">
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+ 
+   
+</head>
+	
+		
+  
+
+
+   
+<title>Andrea Grano</title></head>
+    
+<!--
+	<body onload="loadNav();">
+		<div id="openButton" class="openButton" onclick="openNav(true)">&#9776; Menu</div>
+		<div id="sidenav" class="sidenav">
+			<a class="closeButton" href="javascript:void(0)" onclick="closeNav(true)">&times;</a>
+			<a href=".README.html">ReadMe</a>
+			<a class="sprint" href="../../../Sprint0/Codice/userDocs/Cold%20Storage%20Service%20-%20Natali%20V3.html">Sprint0</a>
+			<a class="sprint" href="../../../Sprint1.0/Codice/userDocs/Sprint%201.0%20-%20V3.html">Sprint1.0</a>
+			<a class="sprint" href="../../../Sprint1.1/Codice/userDocs/Sprint%201.1%20-%20V3.html">Sprint1.1</a>
+			<a id="currentSprint" class="sprint" href="#">&#8211;&#8212; Sprint2 &#8212;&#8211;</a>
+			<div class="sidenavSection">
+				<a href="#Goal Sprint 2">Goal Sprint 2</a>
+				<a href="#Requisiti">Requisiti</a>
+				<a href="#Analisi dei Requisiti">Analisi dei Requisiti</a>
+				<a href="#Analisi del Problema">Analisi del Problema</a>
+				<a href="#Test Plan">Test Plan</a>
+				<a href="#Progettazione">Progettazione</a>
+				<a href="#Deployment">Deployment</a>
+			</div>
+			<p class="separator">&mdash;&mdash;&mdash;&ndash;&ndash;&mdash;&mdash;&mdash;</p>
+			<a class="sprint" href="../../../Sprint3/Codice/userDoc/Sprint%203.html">Sprint3</a>
+			<bottom-spacer/>
+		</div>
+-->
+<body>
+<div id="top">
+<h1>LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+<p><span class="slide3">Progetto conwaygui</span>: realizzazione di una pagina <code class="docutils literal notranslate"><span class="pre">HTML</span></code> che funga da dispostivo di input-ouput
+		evoluto per l’applicazione <span class="std std-ref">ConwayLife25 in Java</span></a> .</p>
+ 
+<h2>Requirements</h2>
+<p><span class="slide3">Progetto conwaygui</span>: realizzazione di una pagina <code class="docutils literal notranslate"><span class="pre">HTML</span></code> che funga da dispostivo di input-ouput
+		evoluto per l’applicazione <span class="std std-ref">ConwayLife25 in Java</span></a> .</p>
+<div>
+	<table class="docutils align-default" style="width: 100%">
+		<colgroup>
+		<col style="width: 30%" />
+		<col style="width: 70%" />
+		</colgroup>
+		<tbody>
+		<tr class="row-odd"><td><a class="reference internal image-reference" href="img/conwaygui.jpg"><img alt="img/conwaygui.jpg" class="align-left" src="img/conwaygui.jpg" style="width: 100%;" /></a>
+		</td>
+		<td><p>La pagina HTML svolge il ruolo di:</p>
+		<ul class="simple">
+			<li><p>un <span class="slide3">dispositivo di input</span>, in quanto permette a un utente umano di settare lo stato iniziale delle celle
+			e di inviare comandi di gestione dell’applicazione con i pulsanti <code class="docutils literal notranslate"><span class="pre">start/stop/exit</span></code>.</p></li>
+			<li><p>un <span class="slide3">dispositivo di output</span>, in quanto permette di visualizzare lo stato della griglia</p></li>
+		</ul>
+		<p>I files relativi alla sua realizazione sono:</p>
+		<ul class="simple">
+			<li><p><span class="xref std std-ref">guipage.html</span>: pagina HTML</p></li>
+			<li><p>WSConwayguiLifeMqtt: gestione delle WebSocket lato server</p></li>
+			<li><p><span class="xref std std-ref">iomap.js</span>: mappa con le celle</p></li>
+			<li><p><span class="xref std std-ref">commsocket.js</span>: gestione della WebSocket lato client</p></li>
+		</ul>
+		</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+ 
+<h2>Requirement analysis</h2>
+	<table>
+		<caption>Tabella dei requisiti</caption>
+		<colgroup>
+			<col style="width: 10%"/>
+			<col style="width: 70%"/>
+			<col style="width: 20%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td>Requisito</td>
+				<td>Tipo</td>
+			</tr>
+			<tr>
+				<td>R1F</td>
+				<td>La pagina HTML deve visualizzare lo stato di una griglia</td>
+				<td>Funzionale</td>
+			</tr>
+			<tr>
+				<td>R2F</td>
+				<td>La GUI deve interfacciarsi con l'applicazione esistente ConwayLife25, scritta in Java</td>
+				<td>Funzionale</td>
+			</tr>
+			<tr>
+				<td>R3F</td>
+				<td>La pagina HTML deve permettere a un utente umano di settare lo stato iniziale delle celle della griglia</td>
+				<td>Funzionale</td>
+			</tr>
+			<tr>
+				<td>R4F</td>
+				<td>La pagina HTML deve presentare pulsanti di start/stop/exit per consentire di comandare l'applicazione</td>
+				<td>Funzionale</td>
+			</tr>
+			<tr>
+				<td>R1NF</td>
+				<td>L'implementazione della GUI deve essere scomposta nei seguenti file:
+					<ul class="simple">
+						<li><span class="xref std std-ref">guipage.html</span>: pagina HTML</li>
+						<li>WSConwayguiLifeMqtt: gestione delle WebSocket lato server</li>
+						<li><span class="xref std std-ref">iomap.js</span>: mappa con le celle</li>
+						<li><span class="xref std std-ref">commsocket.js</span>: gestione della WebSocket lato client</li>
+					</ul>
+				</td>
+				<td>Non Funzionale</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<span class="">&Egrave; altres&igrave; esplicitamente richiesto l'utilizzo delle seguenti tecnologie:</span>
+	<ul>
+		<li>HTML: HyperText Markup Language è un linguaggio di codifica del testo a marcatori (markup), ovvero un formalismo con cui rappresentare un documento su supporto digitale in modo che sia trattabile dall'elaboratore in quanto testo,
+			 usato prevalentemente per i documenti web.</li>
+		<li>WebSocket: protocollo bi-direzionale e full-duplex internamente a una sola connessione TCP, dunque efficiente in termini di risorse</li>
+		<li>MQTT: Message Queuing Telemetry Transport è un protocollo di tipo publish-subscribe, usato soprattutto laddove vi siano limitazioni di risorse e di banda.
+			 Ne esiste un'implementazione operante sopra il sottostante protocollo WebSocket.</li>
+		<li>JavaScript: linguaggio di scripting, interpretato, object-based e debolmente tipizzato sviluppato per dare interattività lato cliente alle pagine HTML; sviluppi successivi (e.g. Node.js) hanno visto il suo utilizzo anche lato server.</li>
+	</ul>
+	
+	<h3>Casi d'uso - diagramma UML</h3>
+	<img src="./img/conwaygui - casi d'uso.png" alt="casi d'uso" width="30%" height="25%"></img>
+	
+	<h3>Analisi del rischio</h3>
+	<p>La GUI non sembra presentare rischi associati alla sicurezza, trattandosi di un'interfaccia grafica collegata a un semplice gioco.</p>
+
+<h2>Problem analysis</h2>
+	<table>
+		<caption>Tabella delle funzionalit&agrave;</caption>
+		<colgroup>
+			<col style="width: 30%"/>
+			<col style="width: 30%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Funzionalit&agrave;</td>
+				<td>Tipo</td>
+				<td>Grado complessit&agrave;</td>
+				<td>Requisiti collegati</td>
+			</tr>
+			<tr>
+				<td>ImpostaStato</td>
+				<td>Interazione esterno</td>
+				<td>Semplice</td>
+				<td>R2F, R3F</td>
+			</tr>
+			<tr>
+				<td>GestisciApplicazione</td>
+				<td>Interazione esterno</td>
+				<td>Semplice</td>
+				<td>R2F, R4F</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table>
+		<caption>ImpostaStato: tabella informazioni/flusso</caption>
+		<colgroup>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Informazione</td>
+				<td>Tipo</td>
+				<td>Livello protezione</td>
+				<td>Input/Output</td>
+				<td>Vincoli</td>
+			</tr>
+			<tr>
+				<td>Cella</td>
+				<td>Semplice</td>
+				<td>Protezione bassa</td>
+				<td>Input/Output</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Griglia</td>
+				<td>Composto</td>
+				<td>Protezione bassa</td>
+				<td>Input/Output</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table>
+		<caption>GestisciApplicazione: tabella informazioni/flusso</caption>
+		<colgroup>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+			<col style="width: 20%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Informazione</td>
+				<td>Tipo</td>
+				<td>Livello protezione</td>
+				<td>Input/Output</td>
+				<td>Vincoli</td>
+			</tr>
+			<tr>
+				<td>Cella</td>
+				<td>Semplice</td>
+				<td>Protezione bassa</td>
+				<td>Input/Output</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Griglia</td>
+				<td>Composto</td>
+				<td>Protezione bassa</td>
+				<td>Input/Output</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Pulsante start</td>
+				<td>Semplice</td>
+				<td>Protezione bassa</td>
+				<td>Input</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Pulsante stop</td>
+				<td>Semplice</td>
+				<td>Protezione bassa</td>
+				<td>Input</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Pulsante exit</td>
+				<td>Semplice</td>
+				<td>Protezione bassa</td>
+				<td>Input</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h3>Analisi delle interazioni</h3>
+	<table>
+		<caption>Tabella maschere</caption>
+		<colgroup>
+			<col style="width: 10%"/>
+			<col style="width: 70%"/>
+			<col style="width: 20%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Maschera</td>
+				<td>Informazioni</td>
+				<td>Funzionalit&agrave;</td>
+			</tr>
+			<tr>
+				<td>guipage</td>
+				<td>Titolo, pulsanti per la gestione dell'applicazione, griglia di gioco</td>
+				<td>ImpostaStato, GestisciApplicazione</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table>
+		<caption>Tabella dei Sistemi Esterni</caption>
+		<colgroup>
+			<col style="width: 25%"/>
+			<col style="width: 25%"/>
+			<col style="width: 25%"/>
+			<col style="width: 25%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Sistema</td>
+				<td>Descrizione</td>
+				<td>Protocollo di interazione</td>
+				<td>Livello di sicurezza</td>
+			</tr>
+			<tr>
+				<td>ConwayLife25</td>
+				<td>La GUI deve interagire con l'applicazione Java ConwayLife25 esistente</td>
+				<td><i>Da definire</i></td>
+				<td>Basso, si tratta di un gioco privo di rischi</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h3>Analisi dei ruoli e delle responsabilit&agrave;</h3>
+	<table>
+		<caption>Tabella dei ruoli</caption>
+		<colgroup>
+			<col style="width: 10%"/>
+			<col style="width: 30%"/>
+			<col style="width: 10%"/>
+			<col style="width: 25%"/>
+			<col style="width: 25%"/>
+		</colgroup>
+		<tbody>
+			<tr>
+				<td>Ruolo</td>
+				<td>Responsabilit&agrave;</td>
+				<td>Maschere</td>
+				<td>Riservatezza</td>
+				<td>Numerosit&agrave;</td>
+			</tr>
+			<tr>
+				<td>Utente umano</td>
+				<td>Impostazione stato iniziale della griglia, gestione dell'applicazione di gioco</td>
+				<td>Home</td>
+				<td>Non &egrave; richiesto alcun grado di riservatezza</td>
+				<td>Massimo un giocatore alla volta</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h3>Modello del dominio</h3>
+	<img src="./img/conwaygui - modello del dominio.png" alt="modello del dominio" width="50%" height="40%"></img>
+	
+	<h3>Piano di lavoro</h3>
+	Il progetto e lo sviluppo della GUI sono assegnati ad Andrea Grano nell'ambito del corso di Ingegneria dei Sistemi Software. Si prevede possa essere terminata in al più un paio di settimane.
+	
+<h2>Test plans</h2> 
+
+
+<h2>Project</h2> 
+ 
+ 
+
+<h2>Testing</h2> 
+ 
+
+<h2>Deployment</h2> 
+
+ 
+<h2>Maintenance</h2> 
+ 
+<!-- USEFUL
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+-->
+	      	
+<br/><br/> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:70%;text-align:left;color:white">
+	By Andrea Grano email: andrea.grano@studio.unibo.it,
+	<img src="./img/AndreaGrano.jpg" alt="agrano" width="15%" height="15%">
+	GIT repo: <a href="https://github.com/AndreaGrano/issLab25.git">https://github.com/AndreaGrano/issLab25.git</a>
+</div> 
+</body>
+</html>
