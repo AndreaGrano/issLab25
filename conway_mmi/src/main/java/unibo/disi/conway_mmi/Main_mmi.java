@@ -1,4 +1,6 @@
-package unibo.disi.conway_mmi.WebSocket;
+package unibo.disi.conway_mmi;
+
+import unibo.disi.conway_mmi.WebSocket.Conway_mmi_WS;
 
 public class Main_mmi {
 	public static void main(String[] args) {
