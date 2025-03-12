@@ -1,5 +1,5 @@
 plugins {
-	//id 'java'
+	id 'java'
     id 'eclipse'
     //id 'distribution'
     id 'application'    //includes java
@@ -64,11 +64,10 @@ dependencies {
 
 }
 
- /*
-task run(type: JavaExec){
+/*task run(type: JavaExec){
 	classpath = sourceSets.main.runtimeClasspath
 	mainClass = "unibo.disi.conwaygui.ConwayguiApplication"
-}
+}*/
 
 
 distributions {
@@ -79,14 +78,13 @@ distributions {
         }
     }
 }
- 
- */
+
 application {
     //Define the main class for the application.
-    mainClassName    = 'unibo.disi.conwaygui.ConwayguiApplication'
+    mainClassName    = 'unibo.disi.conwaygui.MyConwayGuiApplication'
 }
 
- jar {
+/* jar {
     println("building jar")
     duplicatesStrategy = duplicatesStrategy.EXCLUDE //per via di locgback.xml quando si usa spring
     from sourceSets.main.allSource
@@ -97,7 +95,7 @@ application {
     manifest {
         attributes 'Main-Class': "unibo.disi.conwaygui.ConwayguiApplication"
     }
-}
+}*/
 
 
 tasks.named('test') {
