@@ -1,0 +1,74 @@
+2025-03-26 21:38:15 [restartedMain] - Starting ConwayguiMqttApplication using Java 17.0.2 with PID 16948 (D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt\build\classes\java\main started by andre in D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt)
+2025-03-26 21:38:15 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+2025-03-26 21:38:15 [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-26 21:38:15 [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-26 21:38:16 [restartedMain] - Tomcat initialized with port 7110 (http)
+2025-03-26 21:38:16 [restartedMain] - Initializing ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:38:16 [restartedMain] - Starting service [Tomcat]
+2025-03-26 21:38:16 [restartedMain] - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-26 21:38:16 [restartedMain] - Initializing Spring embedded WebApplicationContext
+2025-03-26 21:38:16 [restartedMain] - Root WebApplicationContext: initialization completed in 860 ms
+2025-03-26 21:38:16 [restartedMain] - Adding welcome page: class path resource [static/index.html]
+2025-03-26 21:38:16 [restartedMain] - LiveReload server is running on port 35729
+2025-03-26 21:38:16 [restartedMain] - Starting ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:38:16 [restartedMain] - Tomcat started on port 7110 (http) with context path '/'
+2025-03-26 21:38:16 [restartedMain] - Started ConwayguiMqttApplication in 1.537 seconds (process running for 1.996)
+2025-03-26 21:39:39 [http-nio-7110-exec-2] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-26 21:39:39 [http-nio-7110-exec-2] - Initializing Servlet 'dispatcherServlet'
+2025-03-26 21:39:39 [http-nio-7110-exec-2] - Completed initialization in 8 ms
+2025-03-26 21:41:50 [restartedMain] - Starting ConwayguiMqttApplication using Java 17.0.2 with PID 22296 (D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt\build\classes\java\main started by andre in D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt)
+2025-03-26 21:41:50 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+2025-03-26 21:41:50 [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-26 21:41:50 [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-26 21:41:51 [restartedMain] - Tomcat initialized with port 7110 (http)
+2025-03-26 21:41:51 [restartedMain] - Initializing ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:41:51 [restartedMain] - Starting service [Tomcat]
+2025-03-26 21:41:51 [restartedMain] - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-26 21:41:51 [restartedMain] - Initializing Spring embedded WebApplicationContext
+2025-03-26 21:41:51 [restartedMain] - Root WebApplicationContext: initialization completed in 799 ms
+2025-03-26 21:41:51 [restartedMain] - Adding welcome page: class path resource [static/index.html]
+2025-03-26 21:41:51 [restartedMain] - LiveReload server is running on port 35729
+2025-03-26 21:41:51 [restartedMain] - Starting ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:41:51 [restartedMain] - Tomcat started on port 7110 (http) with context path '/'
+2025-03-26 21:41:51 [restartedMain] - Started ConwayguiMqttApplication in 1.465 seconds (process running for 1.883)
+2025-03-26 21:42:07 [http-nio-7110-exec-1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-26 21:42:07 [http-nio-7110-exec-1] - Initializing Servlet 'dispatcherServlet'
+2025-03-26 21:42:07 [http-nio-7110-exec-1] - Completed initialization in 1 ms
+2025-03-26 21:42:50 [http-nio-7110-exec-7] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-03-26 21:45:21 [restartedMain] - Starting ConwayguiMqttApplication using Java 17.0.2 with PID 15072 (D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt\build\classes\java\main started by andre in D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt)
+2025-03-26 21:45:21 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+2025-03-26 21:45:21 [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-26 21:45:21 [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-26 21:45:22 [restartedMain] - Tomcat initialized with port 7110 (http)
+2025-03-26 21:45:22 [restartedMain] - Initializing ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:45:22 [restartedMain] - Starting service [Tomcat]
+2025-03-26 21:45:22 [restartedMain] - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-26 21:45:22 [restartedMain] - Initializing Spring embedded WebApplicationContext
+2025-03-26 21:45:22 [restartedMain] - Root WebApplicationContext: initialization completed in 812 ms
+2025-03-26 21:45:22 [restartedMain] - Adding welcome page: class path resource [static/index.html]
+2025-03-26 21:45:22 [restartedMain] - LiveReload server is running on port 35729
+2025-03-26 21:45:22 [restartedMain] - Starting ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:45:22 [restartedMain] - Tomcat started on port 7110 (http) with context path '/'
+2025-03-26 21:45:22 [restartedMain] - Started ConwayguiMqttApplication in 1.456 seconds (process running for 1.897)
+2025-03-26 21:45:28 [http-nio-7110-exec-1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-26 21:45:28 [http-nio-7110-exec-1] - Initializing Servlet 'dispatcherServlet'
+2025-03-26 21:45:28 [http-nio-7110-exec-1] - Completed initialization in 0 ms
+2025-03-26 21:45:28 [http-nio-7110-exec-1] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-03-26 21:47:29 [restartedMain] - Starting ConwayguiMqttApplication using Java 17.0.2 with PID 22340 (D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt\build\classes\java\main started by andre in D:\Università\Laurea magistrale\Ingegneria dei sistemi software\GitHub\conwaygui_mqtt)
+2025-03-26 21:47:29 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+2025-03-26 21:47:29 [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-26 21:47:29 [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-26 21:47:30 [restartedMain] - Tomcat initialized with port 7110 (http)
+2025-03-26 21:47:30 [restartedMain] - Initializing ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:47:30 [restartedMain] - Starting service [Tomcat]
+2025-03-26 21:47:30 [restartedMain] - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-26 21:47:30 [restartedMain] - Initializing Spring embedded WebApplicationContext
+2025-03-26 21:47:30 [restartedMain] - Root WebApplicationContext: initialization completed in 853 ms
+2025-03-26 21:47:30 [restartedMain] - Adding welcome page: class path resource [static/index.html]
+2025-03-26 21:47:30 [restartedMain] - LiveReload server is running on port 35729
+2025-03-26 21:47:30 [restartedMain] - Starting ProtocolHandler ["http-nio-7110"]
+2025-03-26 21:47:30 [restartedMain] - Tomcat started on port 7110 (http) with context path '/'
+2025-03-26 21:47:30 [restartedMain] - Started ConwayguiMqttApplication in 1.523 seconds (process running for 1.961)
+2025-03-26 21:47:35 [http-nio-7110-exec-1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-26 21:47:35 [http-nio-7110-exec-1] - Initializing Servlet 'dispatcherServlet'
+2025-03-26 21:47:35 [http-nio-7110-exec-1] - Completed initialization in 0 ms
