@@ -1,0 +1,158 @@
+System sonar24qak
+
+// Definizione dei messaggi
+Dispatch sonarstart : sonarstart(X)
+Dispatch sonarstop  : sonarstop(X)
+
+Event sonardata 	: distance(V)
+
+// CONTESTI
+Context ctxsonarqak24 ip[host="localhost" port=8080]
+
+// ATTORI
+QActor sonardevice context ctxsonarqak24 {
+	[#
+		lateinit var p : Process
+		lateinit var reader : BufferedReader 
+	#]
+
+	State s0 initial {
+		
+	}
+	Goto waitCmd
+	
+	State waitCmd {
+		println("$name waiting for command...") color blue
+	}
+	Transition t0
+		whenMsg sonarstart -> sonarStart
+		
+//	State sonarStart {
+//		[# machineExec("python sonar.py > /tmp/sonardata") #]
+//	}
+//	Goto sendSonarData
+//	
+//	State sendSonarData {
+//		[# SD = File("/tmp/sonardata").bufferedReader().use { reader -> reader.forEachLine{ println(it) }} #]
+//		emitlocalstream sonardata : value($SD)
+//	}
+//	Transition t1
+//		whenMsg sonarstop -> sonarStop
+
+	State sonarStart {
+		println("$name: sonarstart received") color blue
+		
+		[#
+			try {
+				p = Runtime.getRuntime().exec("python sonar.py")
+				reader = BufferedReader(InputStreamReader(p.getInputStream()))
+			} catch(e : Exception) {
+				println("sonardevice sonarStart ERROR: $e")
+			}
+		#]
+	}
+	Goto sendSonarData
+	
+	State sendSonarData {
+		[#
+			try {
+				var V = reader.readLine()
+				if(V != null) {
+					val payload = "distance( ${V} )"
+					val event = MsgUtil.buildEvent("sonardevice", "sonardata", payload)
+					
+					emitLocalStreamEvent(event)
+				}
+			} catch(e : Exception) {
+				println("sonardevice sendSonarData ERROR: $e")
+			}
+		#]
+	}
+	Transition t1
+		whenMsg sonarstop -> sonarStop
+	
+	State sonarStop {
+		println("$name: sonarstop received") color blue
+		
+		[#
+			reader.close()
+			p.destroy()
+		#]
+	}
+	Goto waitCmd
+}
+
+QActor datacleaner context ctxsonarqak24 {
+	
+	State s0 initial {
+		subscribeTo sonardevice for sonardata
+		println("$name subscribed to sonardevice for sonardata") color green
+	}
+	Goto work
+	
+	State work {
+		println("$name waiting for sonardata...") color green
+	}
+	Transition t0
+		whenEvent sonardata -> filter
+		
+	State filter {
+		printCurrentMessage color green
+		
+		[#
+			val V = payloadArg(0)
+			if(V.toDouble() > 0 && V.toDouble() <= 150) {
+				val payload = "distance( ${V} )"
+				val event = MsgUtil.buildEvent("datacleaner", "sonardata", payload)
+			}
+		#]
+	}
+	Goto work
+}
+
+QActor sonar24 context ctxsonarqak24 {
+	[# val LIMIT = 100 #]
+	State s0 initial {
+		delegate sonarstart to sonardevice
+		delegate sonarstop to sonardevice
+		println("$name delegated sonarstart and sonarstop commands to sonardevice") color magenta
+		
+		subscribeTo datacleaner for sonardata
+		println("$name subscribed to datacleaner for sonardata") color magenta
+	}
+	Goto work
+	
+	State work {
+		println("$name waiting for sonardata...") color magenta
+	}
+	Transition t0
+		whenEvent sonardata -> led
+		
+	State led {
+		[#
+			val distance = payloadArg(0).toDouble()
+			if(distance < LIMIT) {
+				Runtime.getRuntime().exec("python ledPython25On.py")
+			} else {
+				Runtime.getRuntime().exec("python ledPython25Off.py")
+			}
+		#]
+	}
+}
+
+QActor sonarusagemock context ctxsonarqak24 {
+	State s0 initial {
+		println("$name started...") color yellow
+	}
+	Goto work
+	
+	State work {
+		println("$name sending sonarstart...") color yellow
+		forward sonar24 -m sonarstart : sonarstart(1)
+		
+		delay 5000
+		
+		println("$name sending sonarstop...") color yellow
+		forward sonar24 -m sonarstop : sonarstop(0)
+	}
+}
