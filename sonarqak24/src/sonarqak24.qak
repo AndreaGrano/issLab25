@@ -11,6 +11,7 @@ Context ctxsonarqak24 ip[host="localhost" port=8080]
 
 // ATTORI
 QActor sonardevice context ctxsonarqak24 {
+	import "java.io.*"
 	[#
 		lateinit var p : Process
 		lateinit var reader : BufferedReader 
@@ -99,13 +100,12 @@ QActor datacleaner context ctxsonarqak24 {
 	State filter {
 		printCurrentMessage color green
 		
-		[#
-			val V = payloadArg(0)
-			if(V.toDouble() > 0 && V.toDouble() <= 150) {
-				val payload = "distance( ${V} )"
-				val event = MsgUtil.buildEvent("datacleaner", "sonardata", payload)
+		onMsg (sonardata : distance(V)) {
+			[# val V = payloadArg(0) #]
+			if [# V.toDouble() > 0 && V.toDouble() <= 150 #] {
+				emitlocalstream sonardata : distance($V)
 			}
-		#]
+		}
 	}
 	Goto work
 }
@@ -119,6 +119,9 @@ QActor sonar24 context ctxsonarqak24 {
 		
 		subscribeTo datacleaner for sonardata
 		println("$name subscribed to datacleaner for sonardata") color magenta
+		
+		// Dichiarazione esplicita per l'attore del broker MQTT 
+		connectToMqttBroker "tcp://192.168.0.9:1883"
 	}
 	Goto work
 	
@@ -126,18 +129,16 @@ QActor sonar24 context ctxsonarqak24 {
 		println("$name waiting for sonardata...") color magenta
 	}
 	Transition t0
-		whenEvent sonardata -> led
+		whenEvent sonardata -> pub
 		
-	State led {
-		[#
-			val distance = payloadArg(0).toDouble()
-			if(distance < LIMIT) {
-				Runtime.getRuntime().exec("python ledPython25On.py")
-			} else {
-				Runtime.getRuntime().exec("python ledPython25Off.py")
-			}
-		#]
+	State pub {
+		onMsg (sonardata : distance(V)) {
+			publish "sonardata" -m sonardata : distance(payloadArg(0))
+			
+			println("$name published the value: ${payloadArg(0)}") color magenta
+		}
 	}
+	Goto work
 }
 
 QActor sonarusagemock context ctxsonarqak24 {

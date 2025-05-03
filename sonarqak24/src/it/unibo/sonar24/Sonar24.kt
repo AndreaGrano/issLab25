@@ -38,6 +38,7 @@ class Sonar24 ( name: String, scope: CoroutineScope, isconfined: Boolean=false, 
 						CommUtils.outmagenta("$name delegated sonarstart and sonarstop commands to sonardevice")
 						subscribeToLocalActor("datacleaner") 
 						CommUtils.outmagenta("$name subscribed to datacleaner for sonardata")
+						connectToMqttBroker( "tcp://192.168.0.9:1883" )
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
@@ -53,22 +54,22 @@ class Sonar24 ( name: String, scope: CoroutineScope, isconfined: Boolean=false, 
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition(edgeName="t03",targetState="led",cond=whenEvent("sonardata"))
+					 transition(edgeName="t03",targetState="pub",cond=whenEvent("sonardata"))
 				}	 
-				state("led") { //this:State
+				state("pub") { //this:State
 					action { //it:State
-						
-									val distance = payloadArg(0).toDouble()
-									if(distance < LIMIT) {
-										Runtime.getRuntime().exec("python ledPython25On.py")
-									} else {
-										Runtime.getRuntime().exec("python ledPython25Off.py")
-									}
+						if( checkMsgContent( Term.createTerm("distance(V)"), Term.createTerm("distance(V)"), 
+						                        currentMsg.msgContent()) ) { //set msgArgList
+								//val m = MsgUtil.buildEvent(name, "sonardata", "distance(payloadArg(0))" ) 
+								publish(MsgUtil.buildEvent(name,"sonardata","distance(payloadArg(0))").toString(), "sonardata" )   
+								CommUtils.outmagenta("$name published the value: ${payloadArg(0)}")
+						}
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
+					 transition( edgeName="goto",targetState="work", cond=doswitch() )
 				}	 
 			}
 		}

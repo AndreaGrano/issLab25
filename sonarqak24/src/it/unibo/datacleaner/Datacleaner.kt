@@ -55,12 +55,13 @@ class Datacleaner ( name: String, scope: CoroutineScope, isconfined: Boolean=fal
 					action { //it:State
 						CommUtils.outgreen("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
 						 	   
-						
-									val V = payloadArg(0)
-									if(V.toDouble() > 0 && V.toDouble() <= 150) {
-										val payload = "distance( ${V} )"
-										val event = MsgUtil.buildEvent("datacleaner", "sonardata", payload)
-									}
+						if( checkMsgContent( Term.createTerm("distance(V)"), Term.createTerm("distance(V)"), 
+						                        currentMsg.msgContent()) ) { //set msgArgList
+								 val V = payloadArg(0)  
+								if(  V.toDouble() > 0 && V.toDouble() <= 150  
+								 ){emitLocalStreamEvent("sonardata", "distance($V)" ) 
+								}
+						}
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002

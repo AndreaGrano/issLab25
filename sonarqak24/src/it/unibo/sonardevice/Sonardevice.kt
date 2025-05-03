@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory
 import org.json.simple.parser.JSONParser
 import org.json.simple.JSONObject
 
-import java.io.*
 
 //User imports JAN2024
+import java.io.*
 
 class Sonardevice ( name: String, scope: CoroutineScope, isconfined: Boolean=false, isdynamic: Boolean=false ) : 
           ActorBasicFsm( name, scope, confined=isconfined, dynamically=isdynamic ){
