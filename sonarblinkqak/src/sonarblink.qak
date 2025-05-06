@@ -1,0 +1,136 @@
+System sonarblink
+
+//DEFINIZIONE DEI MESSAGGI
+Event sonardata : distance(V)
+Event ledcmd : state(S)
+
+//CONTESTI
+Context ctxsonarblink ip[host="localhost" port=8080]
+
+//ATTORI
+QActor sonardevice context ctxsonarblink {
+	import "java.io.*"
+	[#
+		lateinit var p : Process
+		lateinit var reader : BufferedReader 
+	#]
+
+	State s0 initial {
+		[#
+			try {
+				p = Runtime.getRuntime().exec("python sonar.py")
+				reader = BufferedReader(InputStreamReader(p.getInputStream()))
+			} catch(e : Exception) {
+				println("sonardevice sonarStart ERROR: $e")
+			}
+		#]
+	}
+	Goto sendsonardata
+	
+	State sendsonardata {
+		[#
+			try {
+				var V = reader.readLine()
+				if(V != null) {
+					val payload = "distance( ${V} )"
+					val event = MsgUtil.buildEvent("sonardevice", "sonardata", payload)
+					
+					emitLocalStreamEvent(event)
+				}
+			} catch(e : Exception) {
+				println("sonardevice sendSonarData ERROR: $e")
+			}
+		#]
+	}
+}
+
+QActor mastermind context ctxsonarblink {
+	[#
+		val minD = 8
+		val maxD = 16
+	#]
+	
+	State s0 initial {
+		subscribeTo sonardevice for sonardata
+		
+		println("$name: subscribed to sonardevice for sonardata") color green
+	}
+	Goto waitValue
+	
+	State waitValue {
+		println("$name: waiting...") color green
+	}
+	Transition t0
+		whenEvent sonardata -> elabMsg
+		
+	State elabMsg {
+		onMsg (sonardata : distance(V)){
+			[# val V = payloadArg(0).toDouble() #]
+			if [# V <= minD #] {
+				emitlocal ledcmd : state(on)
+				println("$name: led on") color green
+			} 
+			if [# V >= maxD #] {
+				emitlocal ledcmd : state(off)
+				println("$name: led off") color green
+			}
+			if [# V > minD && V < maxD #] {
+				emitlocal ledcmd : state(blink)
+				println("$name: led blink") color green
+			}
+		}
+	}
+	Goto waitValue
+}
+
+QActor leddevice context ctxsonarblink {
+	[# lateinit var p : Process #]
+	
+	State s0 initial {
+		[# machineExec("python ledPython25Off.py") #]		
+		println("$name: led reset") color magenta
+		
+		subscribeTo mastermind for ledcmd
+		println("$name: subscribed to mastermind for ledcmd") color magenta
+	}
+	Goto waitCmd
+	
+	State waitCmd {
+		println("$name: waiting...") color magenta
+	}
+	Transition t0
+		whenEvent ledcmd -> elabCmd
+		
+	State elabCmd {
+		onMsg (ledcmd : state(S)) {
+			[# val S = payloadArg(0) #]
+			if [# S == "on" #] {
+				[#
+					if(p.isAlive()) {
+						p.destroy()
+					}
+					machineExec("python ledPython25On.py")
+				#]
+				println("$name: led is now on") color magenta
+			}
+			if [# S == "off" #] {
+				[#
+					if(p.isAlive()) {
+						p.destroy()
+					}
+					machineExec("python ledPython25Off.py")
+				#]
+				println("$name: led is now off") color magenta
+			}
+			if [# S == "blink" #] {
+				[# 
+					if(p.isAlive()) {
+						p = Runtime.getRuntime().exec("python ledblink.py")
+					}
+				#]
+				println("$name: led is now blinking") color magenta
+			}
+		}
+	}
+	Goto waitCmd
+}
