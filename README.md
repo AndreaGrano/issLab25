@@ -12,3 +12,7 @@ Repo for the "Ingegneria dei Sistemi Software M" course at UNIBO
 
 ### Primi agenti situati modellati tramite il DSL Qak
   * [sonarqak24](sonarqak24): Componente software, sviluppato tramite linguaggio custom qak, che utilizza il SONAR HC-SR04 in grado di ricevere comandi di sonarstart/sonarstop e inviare ad altri componenti software i valori di distanza rilevati, filtrati in modo che ogni valore D emesso sia un valore intero tale che 0<D<=150
+  * [sonarblinkqak](sonarblinkqak): sistema basato su un sonar e un led che, prefissate due distanze D1 e D2 con 0 < D2 < D1, utilizza un sonar per rilevare una distanza D:
+    - se D > D1: il led deve essere spento
+    - se D < D1 e D > D2 :   il led blinks
+    - se D < D2 : il led rimane acceso
