@@ -42,6 +42,7 @@ QActor sonardevice context ctxsonarblink {
 			}
 		#]
 	}
+	Goto sendsonardata
 }
 
 QActor mastermind context ctxsonarblink {
@@ -87,7 +88,7 @@ QActor leddevice context ctxsonarblink {
 	[# lateinit var p : Process #]
 	
 	State s0 initial {
-		[# machineExec("python ledPython25Off.py") #]		
+		[# p = machineExec("python ledPython25Off.py") #]		
 		println("$name: led reset") color magenta
 		
 		subscribeTo mastermind for ledcmd
@@ -109,7 +110,7 @@ QActor leddevice context ctxsonarblink {
 					if(p.isAlive()) {
 						p.destroy()
 					}
-					machineExec("python ledPython25On.py")
+					p = machineExec("python ledPython25On.py")
 				#]
 				println("$name: led is now on") color magenta
 			}
@@ -118,14 +119,14 @@ QActor leddevice context ctxsonarblink {
 					if(p.isAlive()) {
 						p.destroy()
 					}
-					machineExec("python ledPython25Off.py")
+					p = machineExec("python ledPython25Off.py")
 				#]
 				println("$name: led is now off") color magenta
 			}
 			if [# S == "blink" #] {
 				[# 
-					if(p.isAlive()) {
-						p = Runtime.getRuntime().exec("python ledblink.py")
+					if(!p.isAlive()) {
+						p = Runtime.getRuntime().exec("python ledb25link.py")
 					}
 				#]
 				println("$name: led is now blinking") color magenta

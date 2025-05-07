@@ -33,7 +33,7 @@ class Leddevice ( name: String, scope: CoroutineScope, isconfined: Boolean=false
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
-						 machineExec("python ledPython25Off.py")  
+						 p = machineExec("python ledPython25Off.py")  
 						CommUtils.outmagenta("$name: led reset")
 						subscribeToLocalActor("mastermind") 
 						CommUtils.outmagenta("$name: subscribed to mastermind for ledcmd")
@@ -64,7 +64,7 @@ class Leddevice ( name: String, scope: CoroutineScope, isconfined: Boolean=false
 													if(p.isAlive()) {
 														p.destroy()
 													}
-													machineExec("python ledPython25On.py")
+													p = machineExec("python ledPython25On.py")
 								CommUtils.outmagenta("$name: led is now on")
 								}
 								if(  S == "off"  
@@ -72,13 +72,13 @@ class Leddevice ( name: String, scope: CoroutineScope, isconfined: Boolean=false
 													if(p.isAlive()) {
 														p.destroy()
 													}
-													machineExec("python ledPython25Off.py")
+													p = machineExec("python ledPython25Off.py")
 								CommUtils.outmagenta("$name: led is now off")
 								}
 								if(  S == "blink"  
 								 ){ 
-													if(p.isAlive()) {
-														p = Runtime.getRuntime().exec("python ledblink.py")
+													if(!p.isAlive()) {
+														p = Runtime.getRuntime().exec("python ledb25link.py")
 													}
 								CommUtils.outmagenta("$name: led is now blinking")
 								}

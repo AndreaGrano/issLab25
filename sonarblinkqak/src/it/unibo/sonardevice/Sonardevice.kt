@@ -69,6 +69,7 @@ class Sonardevice ( name: String, scope: CoroutineScope, isconfined: Boolean=fal
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
+					 transition( edgeName="goto",targetState="sendsonardata", cond=doswitch() )
 				}	 
 			}
 		}
