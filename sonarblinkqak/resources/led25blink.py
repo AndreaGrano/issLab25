@@ -17,8 +17,8 @@ GPIO.setup(25,GPIO.OUT)
 main activity
 ----------------------------------
 '''
-while true
+while True:
 	GPIO.output(25, GPIO.HIGH)
-	time.sleep(0.5)
+	time.sleep(0.25)
 	GPIO.output(25, GPIO.LOW)
-	time.sleep(0.5)
+	time.sleep(0.25)

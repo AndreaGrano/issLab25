@@ -78,7 +78,7 @@ class Leddevice ( name: String, scope: CoroutineScope, isconfined: Boolean=false
 								if(  S == "blink"  
 								 ){ 
 													if(!p.isAlive()) {
-														p = Runtime.getRuntime().exec("python ledb25link.py")
+														p = Runtime.getRuntime().exec("python led25blink.py")
 													}
 								CommUtils.outmagenta("$name: led is now blinking")
 								}

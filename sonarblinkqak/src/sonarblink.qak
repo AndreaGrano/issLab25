@@ -126,7 +126,7 @@ QActor leddevice context ctxsonarblink {
 			if [# S == "blink" #] {
 				[# 
 					if(!p.isAlive()) {
-						p = Runtime.getRuntime().exec("python ledb25link.py")
+						p = Runtime.getRuntime().exec("python led25blink.py")
 					}
 				#]
 				println("$name: led is now blinking") color magenta
