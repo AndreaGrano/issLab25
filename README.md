@@ -16,3 +16,4 @@ Repo for the "Ingegneria dei Sistemi Software M" course at UNIBO
     - se D > D1: il led deve essere spento
     - se D < D1 e D > D2 :   il led blinks
     - se D < D2 : il led rimane acceso
+  * [vrobotusage](vrobotusage): componente software che governa un robot virtuale. Al momento l'unica funzionalità disponibile è il movimento lungo il perimetro di una stanza, temporaneamente arrestato qualora il robot transiti dinanzi a un sonar 

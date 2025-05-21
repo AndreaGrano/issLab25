@@ -1,0 +1,60 @@
+System vrobotusage
+
+// MESSAGGI
+Dispatch stepdone 	: stepdone(v)
+Dispatch stepfailed : stepfailed(v)
+Event 	 sonardata 		: sonar(d)
+
+// CONTESTI
+Context ctxvrobotusage ip[host="localhost" port=8080]
+
+// ATTORI
+QActor perimeter context ctxvrobotusage withobj vr using "VrobotLLMoves24.create(\"localhost\",myself)" {
+	import "main.java.*"
+	
+	[# var stepr = false #]
+	State s0 initial {
+		println("$name: starting...") color magenta
+		[#
+			vr.setTrace(true)
+			vr.halt() //per sbloccare eventuali notallowed
+		#]
+	}
+	Goto turnleftandgo
+	
+	State turnleftandgo {
+		[# vr.turnLeft() #]
+		println("$name: turn left and go!") color magenta
+	}
+	Goto moveforward
+	
+	State moveforward {
+		[# stepr = vr.step(300) #]
+		println("$name: step(300)") color magenta
+		
+		if [# stepr == true #] {
+			autodispatch stepdone : stepdone(1)
+		} else {
+			autodispatch stepfailed : stepfailed(1)
+		}
+	}
+	Transition t0
+		whenMsg stepdone -> moveforward
+		whenMsg stepfailed -> turnright
+		whenEvent sonardata -> handlesonar
+	
+	State turnright {
+		[# vr.turnRight() #]
+		println("$name: turn right") color magenta
+	}
+	Goto moveforward
+	
+	State handlesonar {
+		[# vr.step(100) #]
+		println("$name: sonar, stop for 2 sec") color magenta
+		delay 2000
+	}
+	Transition t0 // si riprende il movimento sospeso
+		whenMsg stepdone -> moveforward
+		whenMsg stepfailed -> turnright
+}
