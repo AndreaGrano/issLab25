@@ -89,16 +89,26 @@ class Perimeter ( name: String, scope: CoroutineScope, isconfined: Boolean=false
 				}	 
 				state("handlesonar") { //this:State
 					action { //it:State
-						 vr.step(100)  
-						CommUtils.outmagenta("$name: sonar, stop for 2 sec")
-						delay(2000) 
+						CommUtils.outmagenta("$name: stopped and ignoring all messages from sonar for 2 sec")
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+				 	 		stateTimer = TimerActor("timer_handlesonar", 
+				 	 					  scope, context!!, "local_tout_"+name+"_handlesonar", 2000.toLong() )  //OCT2023
+					}	 	 
+					 transition(edgeName="t03",targetState="resume",cond=whenTimeout("local_tout_"+name+"_handlesonar"))   
+				}	 
+				state("resume") { //this:State
+					action { //it:State
+						CommUtils.outblack("$name: resume movement")
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition(edgeName="t03",targetState="moveforward",cond=whenDispatch("stepdone"))
-					transition(edgeName="t04",targetState="turnright",cond=whenDispatch("stepfailed"))
+					 transition(edgeName="t04",targetState="moveforward",cond=whenDispatch("stepdone"))
+					transition(edgeName="t05",targetState="turnright",cond=whenDispatch("stepfailed"))
 				}	 
 			}
 		}

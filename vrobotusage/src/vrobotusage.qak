@@ -50,9 +50,18 @@ QActor perimeter context ctxvrobotusage withobj vr using "VrobotLLMoves24.create
 	Goto moveforward
 	
 	State handlesonar {
-		[# vr.step(100) #]
-		println("$name: sonar, stop for 2 sec") color magenta
-		delay 2000
+//		[# vr.step(100) #]
+//		println("$name: sonar, stop for 2 sec") color magenta
+//		delay 2000
+		println("$name: stopped and ignoring all messages from sonar for 2 sec") color magenta
+	}
+	Transition t0 // si riprende il movimento sospeso
+//		whenMsg stepdone -> moveforward
+//		whenMsg stepfailed -> turnright
+		whenTime 2000 -> resume
+
+	State resume {
+		println("$name: resume movement")
 	}
 	Transition t0 // si riprende il movimento sospeso
 		whenMsg stepdone -> moveforward
