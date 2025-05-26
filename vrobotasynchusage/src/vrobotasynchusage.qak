@@ -1,0 +1,53 @@
+System vrobotasynchusage
+
+// MESSAGGI
+Request step		: step(TIME)
+Reply stepdone		: stepdone(V) for step
+Reply stepfailed	: stepfailed(DURATION, CAUSE) for step
+Event sonardata 	: sonar(DISTANCE)
+
+// CONTESTI
+Context ctxvrobotusage ip[host="localhost" port=8080]
+
+//ATTORI
+QActor perimeterasynch context ctxvrobotusage withobj vr using "VrobotHLMoves24.create(\"localhost\",myself)" {
+	import "main.java.*"
+	
+	State s0 initial {
+		println("$name: starting...") color red
+		[#
+			vr.setTrace(true)
+			vr.move("h") //per sbloccare eventuali notallowed
+		#]
+	}
+	Goto moveforward
+	
+	State moveforward {
+		delay 200
+		[# vr.move("f") #] // eseguirà uno step asincrono di 370ms
+		println("$name: move(f)") color red
+	}
+	Transition t0
+		whenReply stepdone -> moveforward
+		whenReply stepfailed -> turnleft
+		whenEvent sonardata -> handlesonardata
+		
+	State turnleft {
+		[# vr.move("l") #] // gira a sinistra
+		println("$name: move(l)") color red
+	}
+	Goto moveforward
+	
+	State handlesonardata {
+		println("$name: stopped and ignoring all messages from sonar for 2 sec") color red
+	}
+	Transition t0
+		whenTime 2000 -> resume
+		
+	State resume {
+		println("$name: resume") color red
+	}
+	Transition t0
+		whenReply stepdone -> moveforward
+		whenReply stepfailed -> turnleft
+}
