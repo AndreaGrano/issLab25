@@ -18,3 +18,8 @@ Repo for the "Ingegneria dei Sistemi Software M" course at UNIBO
     - se D < D2 : il led rimane acceso
   * [vrobotusage](vrobotusage): componente software che governa un robot virtuale. Al momento l'unica funzionalità disponibile è il movimento lungo il perimetro di una stanza, temporaneamente arrestato qualora il robot transiti dinanzi a un sonar 
   * [vrobotasynchusage](vrobotasynchusage): microservizio che invia comandi a un robot virtuale
+
+<h2>Esame</h2>
+
+### Componenti software propedeutici al progetto d'esame
+  * [holdPlanner](holdPlanner): componente software scritto in Java che gestisce la configurazione della stiva di una nave e calcola, tramite algoritmo A*, i percorsi che un DDR robot può seguire per raggiungere specifici target

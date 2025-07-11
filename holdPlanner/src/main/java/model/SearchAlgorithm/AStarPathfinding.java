@@ -2,8 +2,7 @@ package main.java.model.SearchAlgorithm;
 
 import java.util.*;
 
-import main.resources.mapnaive.RobotDir;
-import main.resources.mapnaive.RobotDir.Direction;
+import unibo.planner23.model.RobotState.Direction;
 import unibo.basicomm23.utils.CommUtils;
  
 
@@ -15,49 +14,6 @@ import unibo.basicomm23.utils.CommUtils;
  * FromPathToMoves, che richiede l'uso di RobotDir
  */
 public class AStarPathfinding {
-
-    // Represents a node in the grid
-    static class Node implements Comparable<Node> {
-        int x;
-        int y;
-        double gCost; // Cost from start to this node
-        double hCost; // Heuristic cost from this node to end
-        double fCost; // gCost + hCost
-        Node parent;  // Parent node to reconstruct path
-
-        public Node(int x, int y) {
-            this.x = x;
-            this.y = y;
-            this.gCost = 100; //Double.MAX_VALUE;
-            this.hCost = 100; //Double.MAX_VALUE;
-            this.fCost = 100; //Double.MAX_VALUE;
-            this.parent = null;
-        }
-
-        // For comparison in PriorityQueue based on fCost
-        @Override
-        public int compareTo(Node other) {
-            return Double.compare(this.fCost, other.fCost);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
-            Node node = (Node) obj;
-            return x == node.x && y == node.y;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(x, y);
-        }
-
-        @Override
-        public String toString() {
-            return "(" + x + ", " + y + ")"+gCost+"/"+hCost;
-        }
-    }
 
     // Heuristic function (Manhattan distance for grid-based)
     private static double calculateHeuristic(Node node, Node targetNode) {
@@ -226,13 +182,12 @@ public class AStarPathfinding {
     	}
     }
 
-    private static RobotDir.Direction dir;
+    private static Direction dir;
     
-    public static String FromPathToMoves(List<Node> path,Node start, Node target) {
-    	//Assumption: robot direction in start is down
+    public static String FromPathToMoves(List<Node> path,Node start, Node target, Direction robotDir) {
     	StringBuilder  moves = new StringBuilder("");
     	if( path.size() == 1) return moves.toString();
-    	dir = RobotDir.Direction.DOWN;
+    	dir = robotDir;
     	
         while(  path.size() > 1 ) {
         	Node current = path.get(0);
@@ -244,102 +199,5 @@ public class AStarPathfinding {
             path.remove(0);           	 
         }  
     	return moves.toString();
-    }
-    
-    public static void main(String[] args) {
-        // Example Grid: 0 = traversable, 1 = obstacle
-//        int[][] grid = {
-//            {0, 0, 0, 0, 0},
-//            {1, 1, 1, 0, 0},
-//            {0, 0, 0, 1, 0},
-//            {0, 1, 0, 0, 0},
-//            {0, 0, 0, 0, 0}
-//        };
-
-/*
-
-|r, 1, 1, 1, 1, 1, 1, 
-|1, 1, X, X, 1, 1, 1, 
-|1, 1, 1, 1, X, 1, 1, 
-|1, 1, X, X, 1, 1, 1, 
-|1, 1, 1, 1, 1, 1, 1, 
-|X, X, X, X, X, X, X,     	 
-
-*/
-    	int[][] grid = {
-   			 {0, 0, 0, 0, 0, 0, 0},
-   			 {0, 0, 1, 1, 0, 0, 0}, 
-   			 {0, 0, 0, 0, 1, 0, 0}, 
-   			 {0, 0, 1, 1, 0, 0, 0}, 
-   			 {0, 0, 0, 0, 0, 0, 0}
-   	};
-
-    	
-        Node start  = new Node(0, 0);
-        Node target = new Node(3, 4); //new Node(4, 4);
-
-        System.out.println("Finding path from " + start + " to " + target);
-        List<Node> path = findPath(grid, start, target);
-
-        if (path != null) {
-            System.out.println("Path found:");
-            printPath(path);
-//            for (Node node : path) {
-//                System.out.print(node + " -> ");
-//            }
-            CommUtils.outblue("------------------------------------");
-
-            showPathInGrid(grid,path,start,target);
-            
-            String moves = FromPathToMoves(path,start,target);
-            CommUtils.outmagenta("moves="+ moves);
-            /*
-            // Visualize the path on the grid (optional)
-            System.out.println("\nPath on Grid:");
-            char[][] displayGrid = new char[grid.length][grid[0].length];
-            for (int r = 0; r < grid.length; r++) {
-                for (int c = 0; c < grid[0].length; c++) {
-                    if (grid[r][c] == 1) {
-                        displayGrid[r][c] = '#'; // Obstacle
-                    } else {
-                        displayGrid[r][c] = '.'; // Traversable
-                    }
-                }
-            }
-            for (Node p : path) {
-                displayGrid[p.x][p.y] = '*'; // Path
-            }
-            displayGrid[start.x][start.y] = 'S'; // Start
-            displayGrid[target.x][target.y] = 'T'; // Target
-
-            for (int r = 0; r < grid.length; r++) {
-                for (int c = 0; c < grid[0].length; c++) {
-                    System.out.print(displayGrid[r][c] + " ");
-                }
-                System.out.println();
-            }
-*/
-        } else {
-            System.out.println("No path found.");
-        }
-
- /*
-        System.out.println("\n--- Testing an impossible path ---");
-//        Node impossibleStart  = new Node(0, 0);
-//        Node impossibleTarget = new Node(0, 1); // Target is an obstacle
-//        grid[0][1] = 1; // Make it an obstacle
-
-        Node impossibleStart  = new Node(0, 0);
-        Node impossibleTarget = new Node(2,3); // Target is an obstacle
-//        grid[0][1] = 1; // Make it an obstacle
-
-        System.out.println("target="+impossibleTarget);
-        List<Node> impossiblePath = findPath(grid, impossibleStart, impossibleTarget);
-        if (impossiblePath != null) {
-            System.out.println("Path found for impossible target (Error in logic or definition): " + impossiblePath);
-        } else {
-            System.out.println("Correctly reported: No path found to an obstacle.");
-        }
-*/
     }
 }

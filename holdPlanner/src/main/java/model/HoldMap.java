@@ -67,6 +67,22 @@ public class HoldMap {
 		return cellType;
 	}
 	
+	public int getRowsDim() {
+		return holdMap.size();
+	}
+	
+	public int getColsDim() {
+		int size = 0;
+		
+		for(ArrayList<Cell> row : holdMap) {
+			if(size < row.size()) {
+				size = row.size();
+			}
+		}
+		
+		return size;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

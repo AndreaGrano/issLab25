@@ -2,9 +2,11 @@ package main.java.model;
 
 public class Cell {
 	private CellType type;
+	private boolean isRobot;
 	
 	public Cell(CellType type) {
 		this.type = type;
+		this.isRobot = false;
 	}
 	
 	public Cell(String code) {
@@ -23,6 +25,14 @@ public class Cell {
 		this.type = type;
 	}
 	
+	public boolean isRobot() {
+		return isRobot;
+	}
+
+	public void setRobot(boolean isRobot) {
+		this.isRobot = isRobot;
+	}
+
 	@Override
 	public String toString() {
 		return type.toString();
