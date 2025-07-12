@@ -104,7 +104,7 @@ public class PlannerForHold {
                 }
             }//when
         } catch (Exception e ) {
-            CommUtils.outred("Planner23Util doMove:" + move + " ERROR:" + e.getMessage());
+            CommUtils.outred("PlannerForHold doMove:" + move + " ERROR:" + e.getMessage());
         }
     }
 	
