@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.HoldMap;
 
 public enum CellType {
 	FREE("0"), OBSTACLE("1"), HOME("H"), IOPORT("I"), SLOT1("A"), SLOT2("B"), SLOT3("C"), SLOT4("D"), SLOT5("E"), NONE("-");

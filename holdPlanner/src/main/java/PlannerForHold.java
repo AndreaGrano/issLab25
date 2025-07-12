@@ -1,19 +1,17 @@
 package main.java;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.List;
 
-import main.java.model.Cell;
-import main.java.model.HoldMap;
-import main.java.model.Exceptions.CellNotFoundException;
-import main.java.model.Parser.HoldMapParser;
-import main.java.model.SearchAlgorithm.AStarPathfinding;
-import main.java.model.SearchAlgorithm.Node;
+import main.java.HoldMap.Cell;
+import main.java.HoldMap.CellType;
+import main.java.HoldMap.HoldMap;
+import main.java.HoldMap.HoldMapLoader;
+import main.java.Exceptions.CellNotFoundException;
+import main.java.Parser.HoldMapParser;
+import main.java.SearchAlgorithm.AStarPathfinding;
+import main.java.SearchAlgorithm.Node;
 import unibo.basicomm23.utils.CommUtils;
-import unibo.planner23.model.Functions;
-import unibo.planner23.model.RobotAction;
 import unibo.planner23.model.RobotState;
 import unibo.planner23.model.RobotState.Direction;
 
@@ -31,12 +29,9 @@ public class PlannerForHold {
 	}
 	
 	public void loadMap(String fileName) throws ClassNotFoundException, IOException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+		holdMap = HoldMapLoader.loadHoldMap(fileName);
 		
-		holdMap = (HoldMap) ois.readObject();
 		holdGridMap = HoldMapParser.toObstacleGrid(holdMap);
-		
-		ois.close();
 	}
 	
 	public String findPath(int x, int y) {
@@ -78,32 +73,32 @@ public class PlannerForHold {
         try {
             switch (move) {
                 case 'w' : {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.wAction) ;
+                	robotState = robotState.forward();
                     moveRobotInTheMap();
                     return;
                 }
                 case 's': {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.sAction) ;
+                	robotState = robotState.backward();
                     moveRobotInTheMap();
                     return;
                 }
                 case 'a'  : {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.lAction);
+                	robotState = robotState.turnLeft();
                     moveRobotInTheMap();
                     return;
                 }
                 case 'l' : {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.lAction) ;                    
+                    robotState = robotState.turnLeft();                    
                     moveRobotInTheMap();
                     return;
                 }
                 case 'd' : {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.rAction) ;
+                    robotState = robotState.turnRight();
                     moveRobotInTheMap();
                     return;
                 }
                 case 'r' : {
-                    robotState = (RobotState) new Functions().result(robotState, RobotAction.rAction) ;
+                	robotState = robotState.turnRight();
                     moveRobotInTheMap();
                     return;
                 }
@@ -119,5 +114,18 @@ public class PlannerForHold {
 		for(char move : moves) {
 			this.doMove(move);
 		}
+	}
+	
+	public int[] getRobotCoords() throws CellNotFoundException {
+		int[] robotCoords = new int[2];
+		
+		robotCoords[0] = robotState.getX();
+		robotCoords[1] = robotState.getY();
+		
+		return robotCoords;
+	}
+	
+	public int[] getCellCoordsByType(CellType type) {
+		return holdMap.getCellCoordsByType(type);
 	}
 }

@@ -1,4 +1,4 @@
-package main.java.model.Exceptions;
+package main.java.Exceptions;
 
 public class CellNotFoundException extends Exception{
 

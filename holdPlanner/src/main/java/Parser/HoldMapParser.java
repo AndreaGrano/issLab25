@@ -1,8 +1,8 @@
-package main.java.model.Parser;
+package main.java.Parser;
 
-import main.java.model.CellType;
-import main.java.model.HoldMap;
-import main.java.model.Exceptions.CellNotFoundException;
+import main.java.HoldMap.CellType;
+import main.java.HoldMap.HoldMap;
+import main.java.Exceptions.CellNotFoundException;
 
 public class HoldMapParser {
 	public static int[][] toObstacleGrid(HoldMap holdMap) {

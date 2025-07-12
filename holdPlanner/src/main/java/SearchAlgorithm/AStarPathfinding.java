@@ -1,4 +1,4 @@
-package main.java.model.SearchAlgorithm;
+package main.java.SearchAlgorithm;
 
 import java.util.*;
 

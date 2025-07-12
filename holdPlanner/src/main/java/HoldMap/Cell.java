@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.HoldMap;
 
 public class Cell {
 	private CellType type;

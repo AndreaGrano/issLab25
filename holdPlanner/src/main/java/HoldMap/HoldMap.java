@@ -1,8 +1,9 @@
-package main.java.model;
+package main.java.HoldMap;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import main.java.model.Exceptions.CellNotFoundException;
+import main.java.Exceptions.CellNotFoundException;
 
 public class HoldMap {
 	private static HoldMap singleton;
@@ -14,7 +15,7 @@ public class HoldMap {
 		return singleton;
 	}
 	
-	private ArrayList<ArrayList<Cell>> holdMap;
+	private List<ArrayList<Cell>> holdMap;
 	
 	private HoldMap() {
 		super();
@@ -53,6 +54,27 @@ public class HoldMap {
 		}
 		
 		return cell;
+	}
+	
+	public int[] getCellCoordsByType(CellType type) {
+		int[] cellCoords = new int[2];
+		cellCoords[0] = -1;
+		cellCoords[1] = -1;
+		
+		boolean found = false;
+		for(int i = 0; i < holdMap.size() && !found; i++) {
+			ArrayList<Cell> row = holdMap.get(i);
+			for(int j = 0; j < row.size() && !found; j++) {
+				if(row.get(j).getType() == type) {
+					cellCoords[0] = i;
+					cellCoords[1] = j;
+					
+					found = true;
+				}
+			}
+		}
+		
+		return cellCoords;
 	}
 	
 	public CellType getCellType(int x, int y) throws CellNotFoundException {
