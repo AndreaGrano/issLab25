@@ -2,7 +2,8 @@ package main.java.SearchAlgorithm;
 
 import java.util.*;
 
-import unibo.planner23.model.RobotState.Direction;
+import main.java.RobotState.RobotState.Direction;
+//import unibo.planner23.model.RobotState.Direction;
 import unibo.basicomm23.utils.CommUtils;
  
 
@@ -158,10 +159,10 @@ public class AStarPathfinding {
     	switch (dir) {
     		case DOWN  : if( down ) {return "w"; }
     		             else { dir =  Direction.UP; return "rrw"; }
-    		case RIGHT : if( down ) { dir =  Direction.DOWN; return "lw"; }
-    		             else { dir =  Direction.UP; return "rw";}
-    		case LEFT  : if( down ) { dir =  Direction.DOWN; return "rw";}
-    		             else { dir =  Direction.UP; return "lw"; }
+    		case RIGHT : if( down ) { dir =  Direction.DOWN; return "rw"; }
+    		             else { dir =  Direction.UP; return "lw";}
+    		case LEFT  : if( down ) { dir =  Direction.DOWN; return "lw";}
+    		             else { dir =  Direction.UP; return "rw"; }
     		case UP    : if( down ) { dir =  Direction.DOWN; return "rrw"; }
     		             else { dir =  Direction.UP; return "w"; }
     		default    : return "";
@@ -170,8 +171,8 @@ public class AStarPathfinding {
  
     protected static String changeY( boolean right  ) {
     	switch (dir) {
-    		case DOWN  : if( right ) { dir =  Direction.RIGHT; return "rw";} 
-    		             else {  dir =  Direction.LEFT;  return "lw"; }
+    		case DOWN  : if( right ) { dir =  Direction.RIGHT; return "lw";} 
+    		             else {  dir =  Direction.LEFT;  return "rw"; }
     		case RIGHT : if( right ) { return "w"; } 
     		             else { dir =  Direction.LEFT; return "rrw";  }
     		case LEFT  : if( right ) { dir =  Direction.RIGHT; return "rrw"; }
@@ -184,11 +185,11 @@ public class AStarPathfinding {
 
     private static Direction dir;
     
-    public static String FromPathToMoves(List<Node> path,Node start, Node target, Direction robotDir) {
+    public static String fromPathToMoves(List<Node> path,Node start, Node target, Direction robotDir) {
     	StringBuilder  moves = new StringBuilder("");
     	if( path.size() == 1) return moves.toString();
     	dir = robotDir;
-    	
+
         while(  path.size() > 1 ) {
         	Node current = path.get(0);
             Node next    = path.get(1);    	

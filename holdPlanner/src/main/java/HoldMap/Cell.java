@@ -1,6 +1,12 @@
 package main.java.HoldMap;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5095172256672510932L;
 	private CellType type;
 	private boolean isRobot;
 	

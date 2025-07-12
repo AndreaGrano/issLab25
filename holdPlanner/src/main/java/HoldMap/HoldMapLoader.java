@@ -56,7 +56,8 @@ public class HoldMapLoader {
 				colIndex += 1;
 			}
 			
-			br.readLine();
+			line = br.readLine();
+			rowIndex += 1;
 		}
 		
 		br.close();

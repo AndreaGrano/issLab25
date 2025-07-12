@@ -13,10 +13,11 @@ public class HoldMapParser {
 		
 		for(int i = 0; i < rowsDim; i++) {
 			try {
-				for(int j = 0; j < colsDim; i++) {
+				for(int j = 0; j < colsDim; j++) {
 					if((holdMap.getCellType(i, j) == CellType.OBSTACLE) || (holdMap.getCellType(i, j) == CellType.SLOT1) || 
 							(holdMap.getCellType(i, j) == CellType.SLOT2) || (holdMap.getCellType(i, j) == CellType.SLOT3) ||
-							(holdMap.getCellType(i, j) == CellType.SLOT4) || (holdMap.getCellType(i, j) == CellType.SLOT5)) {
+							(holdMap.getCellType(i, j) == CellType.SLOT4) || (holdMap.getCellType(i, j) == CellType.SLOT5) ||
+							 holdMap.getCellType(i, j) == CellType.NONE) {
 						grid[i][j] = 1;
 					} else {
 						grid[i][j] = 0;

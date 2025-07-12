@@ -9,11 +9,13 @@ import main.java.HoldMap.HoldMap;
 import main.java.HoldMap.HoldMapLoader;
 import main.java.Exceptions.CellNotFoundException;
 import main.java.Parser.HoldMapParser;
+import main.java.RobotState.RobotState;
+import main.java.RobotState.RobotState.Direction;
 import main.java.SearchAlgorithm.AStarPathfinding;
 import main.java.SearchAlgorithm.Node;
 import unibo.basicomm23.utils.CommUtils;
-import unibo.planner23.model.RobotState;
-import unibo.planner23.model.RobotState.Direction;
+//import unibo.planner23.model.RobotState;
+//import unibo.planner23.model.RobotState.Direction;
 
 public class PlannerForHold {
 	RobotState robotState;
@@ -28,10 +30,12 @@ public class PlannerForHold {
 		robotState = new RobotState(0, 0, Direction.DOWN);
 	}
 	
-	public void loadMap(String fileName) throws ClassNotFoundException, IOException {
+	public HoldMap loadMap(String fileName) throws ClassNotFoundException, IOException {
 		holdMap = HoldMapLoader.loadHoldMap(fileName);
 		
 		holdGridMap = HoldMapParser.toObstacleGrid(holdMap);
+		
+		return holdMap;
 	}
 	
 	public String findPath(int x, int y) {
@@ -39,7 +43,7 @@ public class PlannerForHold {
 		Node target = new Node(x, y);
 		
 		List<Node> nodeList = AStarPathfinding.findPath(holdGridMap, start, target);
-		String path = AStarPathfinding.FromPathToMoves(nodeList, start, target, robotState.getDirection());
+		String path = AStarPathfinding.fromPathToMoves(nodeList, start, target, robotState.getDirection());
 
 		return path;
 	}
@@ -48,6 +52,7 @@ public class PlannerForHold {
         try {
         	int x = robotState.getX();
         	int y = robotState.getY();
+
 			Cell currCell = holdMap.getCell(x, y);
 			currCell.setRobot(true);
 			holdMap.putCell(x, y, currCell);
@@ -60,7 +65,7 @@ public class PlannerForHold {
 	public void doMove(char move) {
         Integer x   = robotState.getX();
         Integer y   = robotState.getY();
-        
+
         try {
 			Cell currCell = holdMap.getCell(x, y);
 			currCell.setRobot(false);

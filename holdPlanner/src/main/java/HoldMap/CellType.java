@@ -1,7 +1,7 @@
 package main.java.HoldMap;
 
 public enum CellType {
-	FREE("0"), OBSTACLE("1"), HOME("H"), IOPORT("I"), SLOT1("A"), SLOT2("B"), SLOT3("C"), SLOT4("D"), SLOT5("E"), NONE("-");
+	FREE("1"), OBSTACLE("X"), HOME("H"), IOPORT("I"), SLOT1("A"), SLOT2("B"), SLOT3("C"), SLOT4("D"), SLOT5("E"), NONE("-");
 	
 	private String code;
 	private CellType(String code) {
@@ -9,7 +9,28 @@ public enum CellType {
 	}
 	
 	public static CellType fromCode(String code) {
-		return CellType.valueOf(code);
+		switch (code) {
+			case "1":
+				return CellType.FREE;
+			case "X":
+				return CellType.OBSTACLE;
+			case "H":
+				return CellType.HOME;
+			case "I":
+				return CellType.IOPORT;
+			case "A":
+				return CellType.SLOT1;
+			case "B":
+				return CellType.SLOT2;
+			case "C":
+				return CellType.SLOT3;
+			case "D":
+				return CellType.SLOT4;
+			case "E":
+				return CellType.SLOT5;
+			default:
+				return CellType.NONE;
+		}
 	}
 	
 	@Override

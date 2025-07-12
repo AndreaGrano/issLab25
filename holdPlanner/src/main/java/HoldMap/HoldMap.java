@@ -1,11 +1,16 @@
 package main.java.HoldMap;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import main.java.Exceptions.CellNotFoundException;
 
-public class HoldMap {
+public class HoldMap implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1111093506986340896L;
 	private static HoldMap singleton;
 	
 	public static HoldMap getHoldMap() {
@@ -27,11 +32,11 @@ public class HoldMap {
 		try {
 			holdMap.get(x);
 		} catch(IndexOutOfBoundsException iobe) {
-			for(int i = holdMap.size(); i < x; i++) {
+			for(int i = holdMap.size() - 1; i < x; i++) {
 				holdMap.add(new ArrayList<Cell>());
 			}
 		}
-		holdMap.add(y, new ArrayList<Cell>());
+		//holdMap.add(y, new ArrayList<Cell>());
 		
 		try {
 			holdMap.get(x).get(y);
