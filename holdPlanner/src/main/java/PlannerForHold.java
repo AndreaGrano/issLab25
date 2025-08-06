@@ -42,6 +42,18 @@ public class PlannerForHold {
 		Node start = new Node(robotState.getX(), robotState.getY());
 		Node target = new Node(x, y);
 		
+		if(holdGridMap[x][y] == 1) { // if cell is an obstacle (or a slot)
+			if(holdGridMap[x + 1][y] == 0) { // try coming from below
+				target = new Node(x + 1, y);
+			} else if (holdGridMap[x - 1][y] == 0) { // try coming from above
+				target = new Node(x - 1, y);
+			} else if (holdGridMap[x][y - 1] == 0) { // try coming from left side
+				target = new Node(x, y - 1);
+			} else if (holdGridMap[x][y + 1] == 0) { // try coming from right side
+				target = new Node(x, y + 1);
+			}
+		}
+		
 		List<Node> nodeList = AStarPathfinding.findPath(holdGridMap, start, target);
 		String path = AStarPathfinding.fromPathToMoves(nodeList, start, target, robotState.getDirection());
 

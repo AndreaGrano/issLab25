@@ -25,4 +25,6 @@ with Diagram('holdplannerArch', show=False, outformat='png', graph_attr=graphatt
   with Cluster('env'):
      sys = Custom('','./qakicons/system.png')
 ### see https://renenyffenegger.ch/notes/tools/Graphviz/attributes/label/HTML-like/index
+     with Cluster('ctxholdplanner', graph_attr=nodeattr):
+          planner=Custom('planner','./qakicons/symActorWithobjSmall.png')
 diag

@@ -2,3 +2,6 @@
 % holdplanner description   
 %====================================================================================
 %====================================================================================
+context(ctxholdplanner, "localhost",  "TCP", "8081").
+ qactor( planner, ctxholdplanner, "it.unibo.planner.Planner").
+ static(planner).

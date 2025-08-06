@@ -45,8 +45,8 @@ public class AStarPathfinding {
 
         // Possible movements (up, down, left, right)
         // For diagonal movement, add: {-1,-1}, {-1,1}, {1,-1}, {1,1}
-        int[] dx = {0, 0, 1, -1};
-        int[] dy = {1, -1, 0, 0};
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
 
         while (!openSet.isEmpty()) {
            //CommUtils.waitTheUser("&&&&&&&&&&&&& HIT fot next"); 
@@ -88,6 +88,25 @@ public class AStarPathfinding {
                     // Calculate tentative gCost for neighbor
                     double tentativeGCost = current.gCost + 1; // Assuming cost of 1 to move to adjacent cell
 
+//                    boolean tentativeIsBetter;
+//                    if(!openSet.contains(neighbor)) {
+//                    	CommUtils.outblue(i + " adding in openSet neighbor:" + neighbor + " tentativeGCost=" + tentativeGCost );
+//                    	openSet.add(neighbor);
+//                    	
+//                    	tentativeIsBetter = true;
+//                    } else if(tentativeGCost < neighbor.gCost) {
+//                    	tentativeIsBetter = true;
+//                    } else {
+//                    	tentativeIsBetter = false;
+//                    }
+//                    
+//                    if(tentativeIsBetter) {
+//                    	neighbor.parent = current;
+//                    	neighbor.gCost = tentativeGCost;
+//                    	neighbor.hCost = calculateHeuristic(neighbor, targetNode);
+//                      	neighbor.fCost = neighbor.gCost + neighbor.hCost;
+//                    }
+                    
                     // If we found a shorter path to this neighbor
                     if (tentativeGCost < neighbor.gCost) {
                         neighbor.parent = current;

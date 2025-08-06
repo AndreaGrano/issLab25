@@ -29,18 +29,18 @@ public class Main {
 			int[] ioportCoords = planner.getCellCoordsByType(CellType.IOPORT);
 			System.out.println("IOPORT coords: " + Arrays.toString(ioportCoords));
 			
-			int[] slot3Coords = planner.getCellCoordsByType(CellType.SLOT3);
-			System.out.println("SLOT3 coords: " + Arrays.toString(slot3Coords));
+			int[] slot2Coords = planner.getCellCoordsByType(CellType.SLOT2);
+			System.out.println("SLOT2 coords: " + Arrays.toString(slot2Coords));
 			
-			String path = planner.findPath(5, 1);
+			String path = planner.findPath(ioportCoords[0], ioportCoords[1]);
 			System.out.println(path);
 			planner.doPath(path);
 			
 			robotCoords = planner.getRobotCoords();
 			System.out.println("Current robot coords: " + Arrays.toString(robotCoords));
 			
-			path = planner.findPath(0, 0);
-			System.out.println(path);
+			path = planner.findPath(slot2Coords[0], slot2Coords[1]);
+			System.out.println("path: " + path);
 			planner.doPath(path);
 			
 			robotCoords = planner.getRobotCoords();
